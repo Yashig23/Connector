@@ -10,7 +10,7 @@ Instagram Clone 📸 | Real-Time Social Media App A full-featured Instagram Clon
 ✅ User Profiles – Customizable profile pages with bio, followers, and posts.
 ✅ Search & Explore – Discover users and trending content.
 ✅ Dark Mode – User-friendly dark mode support.
-✅ Responsive UI – Works smoothly on mobile & desktop.
+✅ Responsive UI – Works smoothly on  desktop.
 
 🛠 Tech Stack
 Frontend
