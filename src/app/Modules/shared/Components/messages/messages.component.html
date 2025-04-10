@@ -154,17 +154,19 @@
 
 
           <!-- Timestamp -->
-          <p class="text-xs mt-1 text-gray-300 text-right">{{ msg.timestamp | date: 'shortTime' }}</p>
+          <p class="text-xs mt-1 text-gray-300 text-right">
+            {{ msg.timestamp | date: 'dd MMM, h:mm a' }}
+          </p>          
         </div>   
         <div class="relative group">
           <!-- Three Dots Icon (Hidden by Default, Visible on Hover) -->
-          <mat-icon 
+          <mat-icon *ngIf="msg.senderId === userID"
             class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer verticalDots"
             (click)="openOptions(msg._id)">more_vert
           </mat-icon>
         
           <!-- Dropdown Options -->
-          <div *ngIf="selectedMessageId === msg._id" 
+          <div *ngIf="selectedMessageId === msg._id " 
                class="absolute top-5 right-0 bg-gray-800 text-white shadow-lg rounded-md p-2 w-24">
             <!-- <p (click)="editMessageFromChats(msg._id!, 'Default Content')" *ngIf="msg.messageType === MessageType.Text"
                class="cursor-pointer hover:bg-gray-600 p-1">✏️ Edit</p> -->

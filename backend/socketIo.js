@@ -28,7 +28,7 @@ module.exports = (server) => {
 
           if (unreadNotifications.length > 0) {
             io.to(socket.id).emit('unread-notifications', unreadNotifications);
-          
+
           }
         } catch (error) {
           console.error('Error fetching notifications:', error);
@@ -59,92 +59,95 @@ module.exports = (server) => {
       }
     });
 
-
     // Messaging Event
     socket.on('send-message', async (messageData) => {
       try {
+        const { receiverId, senderId } = messageData; 
+
         const message = new Message(messageData);
         await message.save();
 
         // 🟡 Send message only to the recipient
-        const recipientSocketId = users.get(messageData.receiverId);
+        const recipientSocketId = users.get(receiverId);
         if (recipientSocketId) {
           io.to(recipientSocketId).emit('receive-message', message);
-  
+
+          // ✅ Now receiverId is properly defined
           await Message.updateMany(
             { receiverId, senderId, isRead: false },
             { $set: { isRead: true } }
           );
         } else {
-          console.log(`User ${messageData.receiverId} is offline`);
+          console.log(`User ${receiverId} is offline`);
         }
       } catch (error) {
         console.error('Error saving message:', error);
       }
     });
 
+
     // delete api
-    socket.on('delete-message', async (_id) => { 
+    socket.on('delete-message', async (_id) => {
       try {
-          const message = await Message.findById(_id);
-          if (!message) {
-            
-              return;
-          }
-    
-          await Message.findByIdAndDelete(_id);
+        const message = await Message.findById(_id);
+        if (!message) {
+
+          return;
+        }
+
+        await Message.findByIdAndDelete(_id);
 
 
-          const recipientSocketId = users.get(message.receiverId);
-          if (recipientSocketId) {
-              io.to(recipientSocketId).emit('message-deleted', _id);
-          }
-    
-          socket.emit('message-deleted', _id);
+        const recipientSocketId = users.get(message.receiverId);
+        if (recipientSocketId) {
+          io.to(recipientSocketId).emit('message-deleted', _id);
+        }
+
+        socket.emit('message-deleted', _id);
       } catch (error) {
-          console.error('Error deleting message:', error);
+        console.error('Error deleting message:', error);
       }
     });
-    
-  
-  // edit api
-  socket.on('edit-message', async ({ _id, newContent }) => { 
-    try {
+
+
+    // edit api
+    socket.on('edit-message', async ({ _id, newContent }) => {
+      try {
         const updatedMessage = await Message.findByIdAndUpdate(
-            _id,
-            { content: newContent },
-            { new: true }  
+          _id,
+          { content: newContent },
+          { new: true }
         );
-  
+
         if (!updatedMessage) {
-          
-            return;
+
+          return;
         }
-  
-   
-  
+
+
+
         const recipientSocketId = users.get(updatedMessage.receiverId);
         if (recipientSocketId) {
-            io.to(recipientSocketId).emit('message-updated', updatedMessage);
+          io.to(recipientSocketId).emit('message-updated', updatedMessage);
         }
 
         socket.emit('message-updated', updatedMessage);
-    } catch (error) {
+      } catch (error) {
         console.error('Error updating message:', error);
-    }
-  });
+      }
+    });
 
 
     // Comment Event
     socket.on('new-comment', async (commentData) => {
-     
+
       try {
         const comment = new Comment(commentData); // Use CommentsSection model
         await comment.save();
 
         // Broadcast the new comment
         io.emit('receive-comment', comment);
-      
+
       } catch (error) {
         console.error('Error saving comment:', error);
       }

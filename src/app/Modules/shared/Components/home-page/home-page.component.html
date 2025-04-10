@@ -2,9 +2,9 @@
   <!-- Friends Section (Takes 2/3 of space on larger screens, full width on small screens) -->
   <section class="w-full md:w-2/3">
     <div>
-      <div class="p-6 rounded-lg shadow-md flex items-center space-x-4 bg-gray-900 mb-2">
+      <div class="p-6 rounded-lg shadow-md flex items-center space-x-4 bg-gray-900 mb-2 mt-2">
         <!-- "You" Section with Add Icon -->
-        <div class="relative flex flex-col items-center hover:shadow-md transition duration-300 cursor-pointer"
+        <div class="relative flex flex-col hover:shadow-md transition duration-300 cursor-pointer"
           [ngClass]="{'uploading': isUploading, 'uploaded': isUploaded}" >
           
           <!-- Profile Image -->
@@ -14,7 +14,10 @@
             <!-- <p-toast />
             <p-button type="button" pRipple (click)="showSuccess()" label="Success" severity="success" />
            -->
-          <span class="mt-2 text-gray-300 font-medium">You</span>
+           <div class="flex justify-center">
+            <span class="mt-2 text-gray-300 font-medium text-center">You</span>
+          </div>
+          
       
           <!-- Plus Icon (Triggers Upload) -->
           <!-- <span *ngIf="!isUploaded" class="absolute bottom-0 right-1 bg-blue-400 text-white w-6 h-6 flex items-center justify-center rounded-full text-lg font-bold"
@@ -27,11 +30,11 @@
         </div>
 
         <!-- Friends Carousel -->
-        <div class="flex-1" *ngIf="InstagramProfile.length > 0">
+        <div class="flex-1" *ngIf="InstagramProfile.length > 0" style="margin-top: -20px;">
           <p-carousel [value]="InstagramProfile" [numVisible]="8" [numScroll]="3" [circular]="true">
             <ng-template pTemplate="item" let-friend>
               <!-- <div class="flex flex-col items-center hover:shadow-md transition duration-300 mx-1" (click)="moveToProfile(friend.userId, true)"> -->
-                <div class="flex flex-col items-center hover:shadow-md transition duration-300 mx-1" >
+                <div class="flex flex-col hover:shadow-md transition duration-300 mx-1" >
                 <img [src]="friend.profile_picture_url || noPicture" alt="Friend Image" (click)="openDialog(friend.user_status)"
                   class="w-20 h-20 rounded-full border-2 border-blue-400 shadow-md" />
                 <!-- <span class="mt-2 text-gray-300 font-medium">{{ friend.username }}</span> -->

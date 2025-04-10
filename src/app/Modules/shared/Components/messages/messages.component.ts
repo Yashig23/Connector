@@ -52,6 +52,7 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this.socketService.listenForMessages().subscribe((message: Message) => {
+      console.log('message ayya ');
       this.messages = [...this.messages, message];
       this.chatId = message.chatId;
       this.senderId = message.senderId;// Ensuring change detection
@@ -81,9 +82,9 @@ export class MessagesComponent implements OnInit {
     }
     // }
 
-    this.socketService.listenForNotifications().subscribe(notification => {
-      alert(notification.message);
-    });
+    // this.socketService.listenForNotifications().subscribe(notification => {
+    //   alert(notification.message);
+    // });
 
     this.socketService.receivesFiles((file: FileData) => {
       const fileMessage: Message = {
@@ -94,7 +95,7 @@ export class MessagesComponent implements OnInit {
         timestamp: new Date(),
         files: [{
           ...file,
-          fileContent: this.arrayBufferToImageURL(file.fileContent ?? '') // ✅ Type Assertion
+          fileContent: this.arrayBufferToImageURL(file.fileContent ?? '') 
         }]
       };
 
