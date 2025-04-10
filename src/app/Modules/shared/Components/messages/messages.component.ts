@@ -76,15 +76,9 @@ export class MessagesComponent implements OnInit {
       this.username = localStorage.getItem('username');
     }
 
-    // if (!this.paramId) {
     if (this.userID) {
       this.fetchCurrentUserData(this.userID);
     }
-    // }
-
-    // this.socketService.listenForNotifications().subscribe(notification => {
-    //   alert(notification.message);
-    // });
 
     this.socketService.receivesFiles((file: FileData) => {
       const fileMessage: Message = {
