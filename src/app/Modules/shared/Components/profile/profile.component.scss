@@ -1,0 +1,182 @@
+.profile-container {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    min-height: 100vh;
+    background: #1a232f;
+    border-radius: 12px;
+  }
+  
+  .profile-card {
+    width: 400px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3f51b5;
+  }
+  
+  .profile-info {
+    flex-grow: 1;
+  }
+  
+  .profile-email {
+    color: gray;
+    font-size: 14px;
+  }
+  
+  .profile-details {
+    margin-top: 20px;
+  }
+  
+  mat-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section {
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .section.ng-enter {
+    transform: translateX(100%);
+  }
+  
+  .section.ng-leave {
+    transform: translateX(-100%);
+  }
+  
+  .heart-animation {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .heart-animation .material-icon {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .heart-animation.liked .material-icon {
+    animation: heartBeat 0.5s ease-in-out;
+    color: #e0245e; /* Instagram-like heart color */
+  }
+  
+  @keyframes heartBeat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Floating Heart Effect */
+  .floating-heart {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 2rem;
+    color: #e0245e;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: floatUp 0.8s ease-out forwards;
+  }
+  
+  @keyframes floatUp {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -100px) scale(1.5);
+    }
+  }
+  
+  .comment-box {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* ✅ Ensure comment-box expands when showComments is true */
+.comment-box.show {
+    max-height: 300px; /* Adjust height if needed */
+    opacity: 1;
+    transform: translateY(0);
+    overflow: visible; /* Ensure it shows content */
+}
+
+  
+  .comment-box.ng-animating,
+  .comment-box.ng-trigger {
+    max-height: 300px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .comments-container {
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 8px;
+    // border-bottom: 1px solid #ddd;
+  }
+  
+  .comment {
+    padding: 6px;
+    font-size: 14px;
+    color: white;
+  }
+  
+  .comment-input-container {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .comment-input {
+    flex-grow: 2;
+    padding: 6px;
+    width: 15rem;
+    border-radius: 7px;
+    background: #1a232f;
+  }
+  
+  .post-button {
+    margin-left: 8px;
+    background-color: transparent;
+    border: none;
+    color: #0095f6;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .custom-dialog-background .mat-dialog-container {
+    background-color: #212429 !important; /* Change this to your desired color */
+  }
+  
+  

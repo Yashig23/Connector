@@ -37,6 +37,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -68,7 +69,7 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+         "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -102,6 +103,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -109,5 +111,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c2800a88-844d-4f22-a09b-438e2c279be5"
   }
 }

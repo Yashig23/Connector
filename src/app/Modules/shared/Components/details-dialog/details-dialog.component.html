@@ -1,0 +1,65 @@
+<div class="dialog-container" *ngIf="showCollection">
+    <div class="card">
+      <div class="media-container">
+        <img [src]="collection.media[0]" alt="Collection Media" class="media-image">
+      </div>
+  
+      <div class="card-content">
+        <h2 class="dialog-title">
+          {{ collection.title || 'Untitled Collection' }}
+        </h2>
+        
+        <p class="dialog-description">
+          {{ collection.description || 'No description available.' }}
+        </p>
+  
+        <div class="meta-info">
+          <span><strong>Created:</strong> {{ collection.created_at | date:'medium' }}</span>
+          <span><strong>Updated:</strong> {{ collection.updated_at | date:'medium' }}</span>
+        </div>
+  
+        <div class="user-info">
+          <mat-icon>account_circle</mat-icon>
+          <span>{{ collection.user?.username || 'Unknown User' }}</span>
+        </div>
+  
+        <div class="dialog-actions">
+          <button mat-button (click)="closeDialog()" class="close-btn">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-container" *ngIf="!showCollection">
+    <div class="card">
+      <div class="media-container">
+        <img [src]="userInfo.profile_image" alt="User Profile" class="media-image">
+      </div>
+  
+      <div class="card-content">
+        <h2 class="dialog-title">
+          {{ userInfo.name || 'Unknown User' }}
+        </h2>
+  
+        <p class="dialog-description">
+          {{ userInfo.username }}
+        </p>
+  
+        <div class="meta-info">
+          <span><strong>Location:</strong> {{ userInfo.location || 'Not specified' }}</span>
+          <span><strong>Followers:</strong> {{ userInfo.followers || '0' }}</span>
+        </div>
+  
+        <div class="user-info">
+          <mat-icon>account_circle</mat-icon>
+          <span>{{ userInfo.username || 'Unknown' }}</span>
+        </div>
+  
+        <div class="dialog-actions">
+          <button mat-button (click)="closeDialog()" class="close-btn">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

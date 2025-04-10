@@ -1,0 +1,129 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #000; /* Black background like Instagram */
+  border-right: 1px solid #333; /* Darker border for a sleek look */
+  padding: 10px;
+  position: fixed;
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .sidebar{
+    display:none;
+  }
+}
+
+.sidebar.closed {
+  width: 60px;
+}
+
+.sidebar .toggle-btn {
+  background: none;
+  border: none;
+  color: white; /* White toggle button */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.sidebar li {
+  padding: 10px;
+}
+
+.sidebar li a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: white; /* White text */
+  font-size: 16px;
+  padding: 10px;
+  transition: background 0.3s;
+}
+
+.sidebar li a:hover {
+  background: rgba(255, 255, 255, 0.1); /* Slight hover effect */
+  border-radius: 8px;
+}
+
+.sidebar li a i {
+  font-size: 24px;
+  margin-right: 10px;
+  color: white; /* White icons */
+}
+
+.sidebar.closed li a span {
+  display: none;
+}
+
+.sidebar {
+  position: relative;
+  width: 250px;
+  background-color: #1e1e1e;
+  padding: 10px;
+}
+
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 5px; /* Adjust this to move up/down */
+  right: 10px; /* Adjust this to move left/right */
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* Footer Sidebar (Mobile View) */
+.footer-sidebar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-sidebar ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-sidebar li {
+  text-align: center;
+}
+
+.footer-sidebar .menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.footer-sidebar .menu-item i {
+  font-size: 24px;
+}

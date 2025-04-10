@@ -1,0 +1,84 @@
+<div *ngIf="data2.showBookmark == false" class="p-6 bg-gradient-to-r from-slate-700 via-slate-800 to-slate-900 rounded-xl shadow-xl text-white">
+  <h2 class="text-2xl font-semibold mb-6 text-center">Following List</h2>
+
+  <div *ngIf="data.length > 0; else noData" class="space-y-4">
+    <div *ngFor="let user of data" class="flex items-center gap-4 p-4 bg-slate-800 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+      <img [src]="noPicture" alt="{{ noPicture }}"
+        class="w-14 h-14 rounded-full border-2 border-gray-300 object-cover transition-transform transform hover:scale-110 duration-300" />
+      
+      <div class="flex flex-col justify-center">
+        <p class="font-medium text-lg text-gray-100">{{ user.username }}</p>
+      </div>
+
+      <div class="ml-auto" *ngIf="!data2.selectButton">
+        <mat-icon (click)="sendFileToFollowing(user)" class="cursor-pointer text-blue-400 hover:text-blue-500 transition-colors duration-200 sendButton">
+          send
+        </mat-icon>
+      </div>
+      <div class="ml-auto" *ngIf="data2.selectButton">
+        <mat-checkbox >
+          Select
+        </mat-checkbox>
+      </div>            
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p class="text-center text-gray-400">No following data available.</p>
+  </ng-template>
+
+  <div class="mt-6 text-center">
+    <button (click)="closeSheet()" class="px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+      Close
+    </button>
+  </div>
+</div>
+
+
+<div *ngIf="data2.showBookmark" class="h-[20rem] bg-transparent">
+  <!-- Bookmark Button -->
+
+  <!-- Save to Collection Dialog -->
+  <div *ngIf="showBookmarkDialog" class="fixed inset-0 flex justify-center items-center">
+    <div class="bg-white w-full max-w-md rounded-lg p-4 shadow-lg">
+      <!-- Header -->
+      <div class="flex justify-between items-center">
+        <h2 class="text-lg font-semibold text-gray-800">Save to</h2>
+        <button class="text-gray-500" (click)="toggleBookmarkDialog()">&times;</button>
+      </div>
+
+      <!-- Display Image for Collection -->
+      <div class="mt-3">
+        <p class="text-sm text-gray-500">Selected Image:</p>
+        <img *ngIf="data2.image" [src]="imageData" alt="Selected Image" class="w-full h-40 object-cover rounded-md border">
+      </div>
+
+      <!-- Collection List -->
+      <div class="mt-3 space-y-2">
+        <!-- Collections will be added dynamically here -->
+      </div>
+
+      <!-- Create New Collection -->
+       <div class="flex justify-between items-center">
+        <div>
+      <button class="text-blue-500 font-semibold mt-3 createNewCollectionBtn" (click)="toggleCreateCollectionModal()">+ Create new collection</button>
+    </div>
+    <div>
+      <mat-icon (click)="createCollection()" class="text-gray-700 cursor-pointer mt-2">save</mat-icon>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- Create Collection Modal -->
+  <div *ngIf="showCreateCollectionModal" class="fixed inset-0 flex justify-center items-center showCreateCollection">
+    <div class="bg-white w-full max-w-sm p-4 rounded-lg shadow-lg">
+      <h2 class="text-lg font-semibold text-gray-900">New Collection</h2>
+      <input type="text" [(ngModel)]="collectionName" class="w-full border p-2 mt-2 text-gray-700 collectionName" placeholder="Collection Name">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded mt-3 w-full createButton" (click)="createCollection()">Create</button>
+      <button class="text-red-500 mt-3 block" (click)="toggleCreateCollectionModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+

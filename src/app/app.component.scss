@@ -1,0 +1,74 @@
+.layout-container {
+    display: flex; /* Enables horizontal layout */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+  }
+  
+  app-sidebar {
+    width: 250px; /* Adjust width as needed */
+    min-width: 80px;
+    background-color: #18283b; /* Ensure it matches design */
+    height: 100vh; /* Full height */
+    position: fixed; /* Fixes the sidebar on the left */
+    left: 0; /* Aligns it to the left */
+    top: 0;
+  }
+  
+  .content-container {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: black;
+    transition: margin-left 0.3s ease; 
+    &.with-sidebar {
+      margin-left: 250px; /* When sidebar is visible */
+    }
+  
+    &.no-sidebar {
+      margin-left: 0; /* When sidebar is hidden */
+    }
+  }
+  
+  .mat-bottom-sheet-container{
+    background-color: transparent !important;
+  }
+
+//-----------------------------------------
+
+  
+  // .layout-container {
+  //   display: flex;
+  //   height: 100vh;
+  //   width: 100vw;
+  // }
+  
+  // app-sidebar {
+  //   width: 250px; /* Adjust width as needed */
+  //   min-width: 80px;
+  //   background-color: #18283b;
+  //   height: 100vh;
+  //   position: fixed;
+  //   left: 0;
+  //   top: 0;
+  // }
+  
+  // .content-container {
+  //   flex-grow: 1;
+  //   padding: 20px;
+  //   overflow-y: auto;
+  //   background-color: black;
+  //   transition: margin-left 0.3s ease; /* Smooth transition for content */
+  // }
+  
+  // .content-container.with-sidebar {
+  //   margin-left: 250px; /* Adjust margin-left for the sidebar width */
+  // }
+  
+  // .content-container.no-sidebar {
+  //   margin-left: 0; /* No margin when sidebar is hidden */
+  // }
+  
+  // .mat-bottom-sheet-container {
+  //   background-color: transparent !important;
+  // }
+  

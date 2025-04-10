@@ -1,0 +1,6 @@
+<div #gallery class="grid">
+    <div *ngFor="let image of images" class="grid-item">
+      <img [src]="image.urls.small" [alt]="image.alt_description">
+    </div>
+  </div>
+  

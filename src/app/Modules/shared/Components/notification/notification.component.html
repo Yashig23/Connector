@@ -1,0 +1,47 @@
+<div class="bg-gray-900 min-h-screen p-4 text-white">
+  <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+    <mat-icon class="text-yellow-400">notifications</mat-icon> Notifications
+  </h2>
+
+  <div class="flex flex-col gap-3">
+    <div *ngIf="notifications && notifications.length > 0; else noNotifications">
+      <!-- Notification Item -->
+      <div *ngFor="let notification of notifications" (click)="moveToProfile(notification.senderId, true)"
+        class="flex items-center gap-3 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition duration-200 shadow-md border border-gray-700">
+
+        <!-- User Profile Picture -->
+        <img [src]="noPicture" alt="User Avatar" class="w-12 h-12 rounded-full border border-gray-500">
+
+        <!-- Notification Content -->
+        <div class="flex-1">
+          <p class="text-sm">
+            <span class="font-medium text-green-400">{{ notification.message }}</span>
+          </p>
+        </div>
+
+        <!-- Action Icons -->
+        <!-- <ng-container *ngIf="notification.type === 'follow'">
+          <button class="px-3 py-1 text-sm bg-blue-600 rounded-md hover:bg-blue-700 flex items-center gap-1">
+            <mat-icon class="text-white text-sm">person_add</mat-icon> Follow Back
+          </button>
+        </ng-container> -->
+
+        <ng-container *ngIf="notification.type === 'like'">
+          <mat-icon class=" text-lg">favorite</mat-icon>
+        </ng-container>
+
+        <ng-container *ngIf="notification.type === 'comment'">
+          <mat-icon class=" text-lg">chat_bubble</mat-icon>
+        </ng-container>
+
+        <ng-container *ngIf="notification.type === 'mention'">
+          <mat-icon class=" text-lg">alternate_email</mat-icon>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+  <ng-template #noNotifications>
+    <p class="text-gray-400 text-center">No new notifications.</p>
+  </ng-template>
+</div>

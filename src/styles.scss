@@ -1,1 +1,76 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@ctrl/ngx-emoji-mart/picker';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::ng-deep .carousel-prev-icon svg {
+    fill: white !important;
+}
+
+::ng-deep .carousel-prev-icon:hover svg {
+    fill: #3b82f6 !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: transparent !important;
+    box-shadow: none !important; /* Remove shadow if needed */
+  }
+  
+
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-image-editor/styles/material.css";
+
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #1a202c; /* Dark background */
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #4a5568; /* Grayish handle */
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #718096; /* Lighter gray */
+  }
+
+  ::ng-deep .p-toast {
+    background: rgba(0, 128, 0, 0.5) !important; /* Green with transparency */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 8px; /* Optional: Rounded corners */
+  }
+  
+  ::ng-deep .p-toast .p-toast-message {
+    background: transparent !important; /* Transparent message background */
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  ::ng-deep .p-toast .p-toast-message .p-toast-summary {
+    color: white !important;
+    font-weight: bold;
+  }
+  
+  ::ng-deep .p-toast .p-toast-message .p-toast-detail {
+    color: white !important;
+  }
+  

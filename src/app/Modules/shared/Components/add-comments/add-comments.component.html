@@ -1,0 +1,57 @@
+<div class="media-card" *ngIf="media">
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <img [src]="media.media_url" alt="noPicture" class="profile-pic w-10 h-10 rounded-full" />
+    <!-- <span class="username">{{ media.username }}</span> -->
+  </div>
+
+  <!-- Media Content -->
+  <div class="media-content">
+    <img [src]="media.media_url" alt="Media Content" class="media-image" />
+  </div>
+
+  <!-- Caption -->
+  <div class="caption" *ngIf="media.caption">
+    {{ media.caption }}
+  </div>
+
+  <!-- Add Comment Section -->
+  <div class="add-comment">
+    <input type="text" placeholder="Add a comment..." [(ngModel)]="newComment" #commentInput />
+    <button (click)="addComment(media, commentInput)">Post</button>
+  </div>
+
+  <!-- Comments Section -->
+  <div class="comments-section" *ngIf="media.comments?.length">
+    <div class="comment" *ngFor="let comment of media.comments">
+      <div class="comment-content">
+        <span class="comment-username">{{ comment.username }}:</span>
+        <span class="comment-text">{{ comment.text }}</span>
+  
+        <!-- Replies Display -->
+        <div class="replies" *ngIf="comment.replies?.length">
+          <div *ngFor="let reply of comment.replies" class="reply">
+            <span class="reply-username">{{ reply.username }}:</span>
+            <span class="reply-text">{{ reply.text }}</span>
+          </div>
+        </div>
+  
+        <!-- Reply Input -->
+        <div *ngIf="replyingToCommentId === comment.comment_id" class="reply-input">
+          <input type="text" placeholder="Write a reply..." [(ngModel)]="replyText" />
+          <button (click)="sendReply(comment)">Reply</button>
+          <button (click)="cancelReply()">Cancel</button>
+        </div>
+      </div>
+  
+      <!-- Comment Actions -->
+    <div class="comment-actions">
+      <mat-icon (click)="startReplying(comment.comment_id)" class="action-icon">reply</mat-icon>
+      <!-- <mat-icon (click)="likeComment(media, comment)"  class="action-icon">
+        favorite
+      </mat-icon> -->
+      <!-- <span>{{ comment.likes_count }}</span> -->
+    </div>
+    </div>
+  </div>  
+</div>

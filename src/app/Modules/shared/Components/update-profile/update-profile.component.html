@@ -1,0 +1,57 @@
+<div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4">
+  <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
+    <h2 class="text-xl font-semibold text-center">Complete Your Profile</h2>
+    <p class="text-gray-500 text-sm text-center">Update your details or skip for now.</p>
+
+    <!-- Profile Picture Upload -->
+    <div class="flex flex-col items-center my-4">
+      <img *ngIf="selectedImage || user.profile_picture_url; else defaultPic" 
+           [src]="selectedImage || user.profile_picture_url" 
+           alt="Profile Picture" 
+           class="w-24 h-24 rounded-full object-cover border">
+      <ng-template #defaultPic>
+        <img src="assets/default-avatar.png" 
+             alt="Default Profile" 
+             class="w-24 h-24 rounded-full object-cover border">
+      </ng-template>
+      <input type="file" (change)="onFileSelected($event)" 
+             class="mt-2 text-sm text-gray-500 cursor-pointer">
+    </div>
+
+    <!-- Full Name -->
+    <div class="mt-4">
+      <label class="block text-gray-700 text-sm font-medium">Full Name</label>
+      <input type="text" [(ngModel)]="user.full_name" 
+             class="w-full mt-1 p-2 border rounded-md focus:ring focus:ring-blue-300">
+    </div>
+
+    <!-- Username -->
+    <div class="mt-4">
+      <label class="block text-gray-700 text-sm font-medium">Username</label>
+      <input type="text" [(ngModel)]="user.username" 
+             class="w-full mt-1 p-2 border rounded-md focus:ring focus:ring-blue-300">
+    </div>
+
+    <!-- Bio -->
+    <div class="mt-4">
+      <label class="block text-gray-700 text-sm font-medium">Bio</label>
+      <textarea [(ngModel)]="user.bio" 
+                class="w-full mt-1 p-2 border rounded-md focus:ring focus:ring-blue-300"></textarea>
+    </div>
+
+    <!-- Account Type Selection -->
+    <!-- <div class="mt-4">
+      <label class="block text-gray-700 text-sm font-medium">Account Type</label>
+      <select [(ngModel)]="user.account_type" 
+              class="w-full mt-1 p-2 border rounded-md focus:ring focus:ring-blue-300">
+        <option *ngFor="let type of accountTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div> -->
+
+    <!-- Action Buttons -->
+    <div class="flex justify-between items-center mt-6">
+      <button class="text-gray-500 hover:text-gray-700 text-sm" (click)="skip()">Skip</button>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" (click)="saveProfile()">Save</button>
+    </div>
+  </div>
+</div>

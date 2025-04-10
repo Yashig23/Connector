@@ -1,0 +1,44 @@
+<div class="text-gray-300 font-medium text-2xl m-4 flex justify-center">Feed</div>
+
+<!-- Responsive Image Grid -->
+<div #gallery class="flex flex-col gap-6 p-4 justify-center items-center">
+  <div *ngFor="let image of images" class="bg-gray-900 rounded-lg shadow-md overflow-hidden w-[700px] h-auto">
+    
+    <!-- Profile Section -->
+    <div class="flex items-center p-3 contentImage" (click)="openDetailsDialog(image)">
+      <img src="data:image/jpeg;base64,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" alt="User Profile"
+        class="w-10 h-10 rounded-full border border-gray-500 shadow-sm">
+      <span class="text-gray-300 font-semibold ml-3">{{ image.user.name || 'Unknown User' }}</span>
+    </div>
+
+    <!-- Image Section -->
+    <img [src]="image?.urls?.small" [alt]="image.alt_description"
+      class="w-full h-90 object-cover transition-transform duration-300 hover:scale-105 p-6">
+
+    <!-- Icons Section -->
+    <div class="flex justify-between p-3 text-gray-400">
+        <div class="flex space-x-4">
+          <div class="heart-container" (click)="toggleLike(image)">
+            <span class="material-icons" [ngClass]="{'text-red-500': image.isLiked, 'text-gray-300': !image.isLiked}">
+              {{ image.isLiked ? 'favorite' : 'favorite_border' }}
+            </span>
+
+            <!-- Floating hearts -->
+            <span *ngFor="let heart of image.floatingHearts" class="floating-heart material-icons">
+              favorite
+            </span>
+          </div>
+          <button class="hover:text-green-400 transition" (click)="openBottomBox(false, image)">
+            <span class="material-icons sendButton">send</span> 
+          </button>
+        </div>
+        <button class="hover:text-yellow-400 transition bookmarkIcon" (click)="openBottomBox(true, image)">
+          <span class="material-icons" [ngClass]="{'text-yellow-400': isBookmarked(image), 'text-gray-300': !isBookmarked(image)}">
+            {{ isBookmarked(image) ? 'bookmark' : 'bookmark_border' }}
+          </span>
+        </button>
+        
+      </div>
+</div>
+
+

@@ -1,0 +1,30 @@
+.heart-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .floating-heart {
+    position: absolute;
+    left: 50%;
+    top: 30%; /* Adjusted to start slightly above */
+    font-size: 2rem;
+    color: #e0245e;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: floatUp 0.8s ease-out forwards;
+    z-index: 10;
+  }
+  
+  @keyframes floatUp {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -120px) scale(1.5); /* Adjusted for better floating effect */
+    }
+  }
+  

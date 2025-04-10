@@ -1,0 +1,112 @@
+<div class="bg-white shadow-lg rounded-lg p-6" *ngIf="postImage != true && !showStatus">
+  <!-- Profile Picture Wrapper -->
+  <div class="rounded-md overflow-hidden border border-gray-200 shadow-sm">
+    <img 
+      class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" 
+      [src]="userData.profile_picture_url || 'assets/default-profile.png'" 
+      alt="Profile Picture" 
+    />
+  </div>
+
+  <!-- Options Section -->
+  <div class="flex justify-around mt-6">
+    <!-- Change Profile Picture -->
+    <label 
+      for="profileUpload" 
+      class="flex items-center gap-2 text-sm font-medium text-blue-500 cursor-pointer hover:text-blue-700 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      Change Profile Picture
+    </label>
+
+    <!-- Custom Profile Picture -->
+    <button 
+      (click)="openCustomProfile()" 
+      class="flex items-center gap-2 text-sm font-medium text-blue-500 hover:text-blue-700 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276a1 1 0 01.894 0l4.553 2.276M15 14l4.553 2.276a1 1 0 00.894 0L24 14" />
+      </svg>
+      Custom Profile Picture
+    </button>
+  </div>
+
+  <!-- Hidden File Input -->
+  <input 
+    id="profileUpload" 
+    type="file" 
+    accept="image/*" 
+    class="hidden" 
+    (change)="updateProfilePicture($event)" 
+  />
+</div>
+
+<div *ngIf="postImage == true && !showStatus">
+  <div #gallery class="flex flex-col gap-6 justify-center items-center">
+    
+    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden w-full h-[39rem] max-w-2xl relative">
+      
+      <!-- Syncfusion Image Editor (Only Visible When Editing) -->
+      <div *ngIf="isEditing" style="width:550px;height:450px; margin-left: 4rem; margin-top: 2rem" class="flex justify-center">
+        <ejs-imageeditor #imageEditor id="image-editor"
+         
+          (saved)="onImageSave($event)">
+        </ejs-imageeditor>
+        <!-- <ejs-imageeditor></ejs-imageeditor> -->
+      </div>
+
+      <!-- PrimeNG Carousel (Hidden When Editing) -->
+
+      <div *ngIf="!isEditing" class="relative pt-3">
+        <p-carousel 
+          [value]="imagesData" 
+          [numVisible]="1" 
+          [numScroll]="1" 
+          [circular]="false" 
+          [showIndicators]="true" 
+          (onPage)="onSlideChange($event)"
+          class="custom-carousel">
+      
+          <ng-template pTemplate="item" let-image let-index="index">
+            <div class="relative flex justify-center items-center bg-gray-100 rounded-xl shadow-md p-4">
+              <img [src]="image.tempmedia_url" 
+                   class="w-[50rem] h-[50vh] object-contain rounded-lg transition-transform duration-300 hover:scale-105">
+              <button (click)="removeImage(currentIndex)"
+                class="absolute top-4 right-4 bg-red-600 text-white p-2 rounded-full shadow-lg hover:bg-red-700 transition">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </ng-template>
+      
+        </p-carousel>
+      </div>
+      
+      <div class="p-4">
+        <textarea [(ngModel)]="captionData"
+          class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none" rows="2"
+          placeholder="Write a caption..."></textarea>
+
+        <div class="flex justify-between items-center mt-2">
+          <button (click)="openEditor()" class="text-blue-500 text-base hover:underline mr-4">Edit</button>
+          <!-- <button (click)="openMentionModal()" class="text-blue-500 text-base hover:underline mx-2">Mention</button> -->
+          <button (click)="onPost()" class="bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-600">
+            Post
+          </button>
+            <button (click)="closeEditor()" *ngIf="isEditing" class="mt-2 bg-red-500 text-white px-4 py-2 hover:bg-red-600 shadow rounded-md">
+              Cancel
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showStatus">
+    <div class="rounded-md overflow-hidden border border-gray-200 shadow-sm">
+      <img 
+        class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" 
+        [src]="statusData" 
+        alt="Profile Picture" 
+      />
+    </div>
+  </div>
+</div>

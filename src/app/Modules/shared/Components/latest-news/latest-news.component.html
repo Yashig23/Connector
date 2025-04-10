@@ -1,0 +1,17 @@
+<div class="bg-gray-900 p-4 rounded-lg shadow-lg">
+    <h2 class="text-xl font-semibold text-gray-300 mb-4">📰 Trending News</h2>
+    
+    <div *ngIf="newsList.length > 0; else noNews" class="space-y-3">
+      <div *ngFor="let news of newsList" 
+           class="bg-gray-800 p-3 rounded-md shadow-sm hover:bg-gray-700 transition cursor-pointer">
+        <a [href]="news.link" target="_blank" class="text-gray-200 font-normal hover:text-blue-400">
+          {{ news.title }}
+        </a>
+      </div>
+    </div>
+  
+    <ng-template #noNews>
+      <p class="text-gray-400">No news available at the moment.</p>
+    </ng-template>
+  </div>
+  

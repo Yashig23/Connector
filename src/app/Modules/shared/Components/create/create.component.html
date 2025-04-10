@@ -1,0 +1,69 @@
+<div class="container mx-auto p-6 border rounded-md shadow-lg bg-white">
+    <!-- File Upload Input -->
+    <div class="flex flex-col items-center">
+      <input type="file" (change)="onFileSelected($event)" multiple class="hidden" #fileInput />
+      <button (click)="fileInput.click()" class="border border-gray-300 rounded-md p-4 bg-gray-100 hover:bg-gray-200">
+        <i class="pi pi-cloud-upload text-2xl"></i>
+        <p class="mt-2">Click or Drag & Drop to upload</p>
+      </button>
+    </div>
+  
+    <!-- Progress Bar -->
+    <div class="mt-4">
+      <div class="w-full bg-gray-200 rounded-full h-2.5">
+        <div class="bg-blue-500 h-2.5 rounded-full" [style.width]="totalSizePercent + '%'"></div>
+      </div>
+      <p class="text-center text-sm mt-2">{{ totalSize }} B / 1 MB</p>
+    </div>
+  
+    <!-- Pending Files List -->
+    <div *ngIf="files.length > 0" class="mt-6">
+      <h5 class="font-bold text-lg">Pending</h5>
+      <div class="flex flex-wrap gap-4">
+        <div *ngFor="let file of files; let i = index" class="p-4 border rounded-md shadow-sm flex flex-col items-center">
+          <img [src]="file.objectURL" alt="{{ file.name }}" class="w-24 h-16 object-cover rounded-md">
+          <span class="font-semibold mt-2 text-sm">{{ file.name }}</span>
+          <p class="text-xs">{{ formatSize(file.size) }}</p>
+          <span class="bg-yellow-200 text-yellow-700 text-xs px-2 py-1 rounded mt-1">Pending</span>
+          <div class="flex gap-2">
+            <button (click)="editImage(i)" class="text-blue-500 mt-2">Edit</button>
+            <button (click)="removeFile(i)" class="text-red-500 mt-2">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Completed Files List -->
+    <div *ngIf="uploadedFiles.length > 0" class="mt-6">
+      <h5 class="font-bold text-lg">Completed</h5>
+      <div class="flex flex-wrap gap-4">
+        <div *ngFor="let file of uploadedFiles; let i = index" class="p-4 border rounded-md shadow-sm flex flex-col items-center">
+          <img [src]="file.objectURL" alt="{{ file.name }}" class="w-24 h-16 object-cover rounded-md">
+          <span class="font-semibold mt-2 text-sm">{{ file.name }}</span>
+          <p class="text-xs">{{ formatSize(file.size) }}</p>
+          <span class="bg-green-200 text-green-700 text-xs px-2 py-1 rounded mt-1">Completed</span>
+          <button (click)="removeUploadedFile(i)" class="text-red-500 mt-2">Remove</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Upload Button -->
+    <button (click)="uploadFiles()" [disabled]="files.length === 0" class="mt-6 bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600">
+      Upload Files
+    </button>
+  </div>
+  
+  <!-- Image Editor Modal -->
+<div *ngIf="editedImage" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-4 rounded-md shadow-lg">
+      <pintura-editor-modal
+        [src]="editedImage"
+        [options]="editorOptions"
+        (process)="handleProcess($event)"
+      >
+      </pintura-editor-modal>
+      <button (click)="editedImage = null" class="mt-2 text-red-500">Cancel</button>
+    </div>
+  </div>
+  
+  

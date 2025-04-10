@@ -1,0 +1,17 @@
+<div class="sidebar" [class.closed]="!isSidebarOpen" *ngIf="!isMobile">
+  
+	<ul>
+	  <li *ngFor="let item of menuItems">
+		<a [routerLink]="item.route" class="menu-item" (click)="onNotificationClick(item.title)">
+		  <i class="material-icons">{{ item.icon }}</i>
+		  <span class="title">{{ item.title }}</span>
+  
+		  <span *ngIf="item.title === 'Notifications' && notificationCount > 0" class="notification-badge">
+			{{ notificationCount }}
+		  </span>
+		</a>
+	  </li>
+	</ul>
+  </div>
+  
+  

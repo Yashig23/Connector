@@ -1,0 +1,19 @@
+/* Attachment menu animation */
+.scale-100 {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .scale-0 {
+    transform: scale(0);
+    opacity: 0;
+  }
+  
+  .message-bubble {
+    max-width: 75%; /* ✅ Ensure max width for the bubble */
+    word-wrap: break-word; /* ✅ Break long words */
+    overflow-wrap: break-word; /* ✅ Ensure text wraps properly */
+    white-space: pre-wrap; /* ✅ Preserve spaces & line breaks */
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }

@@ -1,0 +1,66 @@
+<div *ngIf='!this.hidePage' class="relative flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600">
+    <!-- Background Shapes -->
+    <div class="absolute w-96 h-96 bg-gradient-to-r from-indigo-600 to-pink-500 rounded-full -top-40 -left-40"></div>
+    <div class="absolute w-96 h-96 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full -bottom-40 -right-40"></div>
+
+    <!-- Form Container -->
+    <form class="relative z-10 bg-white bg-opacity-10 p-8 rounded-xl shadow-xl backdrop-blur-xl max-w-sm w-full">
+        <h3 class="text-3xl font-medium text-center text-white auth-heading">
+            {{ registering ? 'Register Here' : 'Login Here' }}
+        </h3>
+
+        <!-- Show Full Name field only for registration -->
+        <div *ngIf="registering" class="mt-4">
+            <label for="fullName" class="block text-lg font-medium text-white">Full Name</label>
+            <input type="text" placeholder="Your Name" id="fullName" [(ngModel)]="fullName" name="fullName" 
+                class="w-full h-12 mt-2 p-4 bg-white bg-opacity-10 border rounded-md text-white placeholder-gray-400">
+        </div>
+
+        <!-- Email / Username -->
+        <label for="username" class="block text-lg font-medium text-white mt-6">Username</label>
+        <input type="text" placeholder="username" id="username" [(ngModel)]="username" name="username" 
+            class="w-full h-12 mt-2 p-4 bg-white bg-opacity-10 border rounded-md text-white placeholder-gray-400">
+
+        <!-- Email / Username -->
+        <label for="email" class="block text-lg font-medium text-white mt-6">Email</label>
+        <input type="email" placeholder="Email or Phone" id="email" [(ngModel)]="email" name="email" 
+            class="w-full h-12 mt-2 p-4 bg-white bg-opacity-10 border rounded-md text-white placeholder-gray-400">
+
+        <!-- Password -->
+        <label for="password" class="block text-lg font-medium text-white mt-6">Password</label>
+        <input type="password" placeholder="Password" [(ngModel)]="password" name="password" id="password"
+            class="w-full h-12 mt-2 p-4 bg-white bg-opacity-10 border rounded-md text-white placeholder-gray-400">
+
+        <button class="w-full mt-8 p-3 bg-white text-black font-semibold rounded-md submit-button" type="submit"
+            (click)="onSubmit()">
+            {{ registering ? 'Sign Up' : 'Log In' }}
+        </button>
+
+        <div class="block text-lg font-medium text-white mt-6">
+            <span>{{ registering ? 'Already have an account?' : "Don't have an account?" }}</span>
+            <a (click)="toggleMode()" class="cursor-pointer text-blue-400 hover:underline register-section">
+                {{ registering ? 'Login' : 'Register' }}
+            </a>
+        </div>
+
+        <!-- Social Login Buttons -->
+        <div class="flex justify-between items-center mt-8">
+            <div id="googleLogin" class="flex items-center space-x-2 bg-white bg-opacity-20 py-2 px-4 rounded-md cursor-pointer hover:bg-opacity-30"
+                (click)="loginWithGoogle()">
+                <i class="fab fa-google text-white"></i>
+                <span class="text-white">Google</span>
+            </div>
+        </div>
+    </form>      
+</div>
+
+<div *ngIf="this.hidePage" class="w-full h-max">
+    <div>
+        <div class="flex justify-center items-center">
+        <p class="text-white font-semibold text-3xl">You are already logged In</p>
+    </div>
+        <div class="flex justify-center">
+            <button class="bg-blue-500 px-4 py-2 rounded-md text-white font-normal shadow-md" (click)="moveToHome()">Move to Home Page</button>
+        </div>
+    </div>
+</div>

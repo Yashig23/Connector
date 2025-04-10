@@ -1,0 +1,15 @@
+<!-- Video Call Button -->
+<button (click)="startCall()" class="">
+    <mat-icon>videocam</mat-icon>
+  </button>
+  
+  <!-- Video Chat Modal -->
+  <div *ngIf="inCall" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-gray-900 p-4 rounded-lg">
+      <!-- <h2 class="text-white text-lg">Video Call</h2> -->
+      <video #localVideo autoplay class="rounded-lg w-64 h-64"></video>
+      <video #remoteVideo autoplay class="rounded-lg w-64 h-64"></video>
+      <button (click)="endCall()" class="mt-4 bg-red-500 px-4 py-2 rounded-lg">End Call</button>
+    </div>
+  </div>
+  
