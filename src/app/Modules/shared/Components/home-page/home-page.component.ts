@@ -141,7 +141,6 @@ openDialog(user?: followers): void {
   if (user?.user_status) {
     imageToShow = user.user_status; // If user has a status image, show it
   }
-  console.log("user ki image", user?.user_status);
 
   const dialogRef = this.dialog.open(BookmarkDialogComponent, {
     width: "400px",

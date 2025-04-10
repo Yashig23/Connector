@@ -52,7 +52,6 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this.socketService.listenForMessages().subscribe((message: Message) => {
-      console.log('message ayya ');
       this.messages = [...this.messages, message];
       this.chatId = message.chatId;
       this.senderId = message.senderId;// Ensuring change detection
